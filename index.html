@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#130e0d">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <title>Hank's BBQ | Order online</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&family=Cairo:wght@800&display=swap" rel="stylesheet">
+  <script>try{if(sessionStorage.getItem("wipe-arrive")){sessionStorage.removeItem("wipe-arrive");document.documentElement.classList.add("wipe-arrive")}}catch(e){}</script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="preload" as="image" href="img/logo.png">
+  <link rel="stylesheet" href="css/shop.css">
+  <link rel="stylesheet" href="css/transition.css">
+  <noscript><style>#intro,#wipe{display:none}body.intro-on{overflow:auto;height:auto}.fade-up,.card.reveal,.rv{opacity:1!important;transform:none!important;translate:none!important}.display .ln>span{transform:none!important}.print,.menu-chips li,.about-copy>*{opacity:1!important;scale:none!important;transform:none!important;translate:none!important}</style></noscript>
+</head>
+<body class="shop intro-on">
+  <div id="wipe" aria-hidden="true"><div class="w-dark"></div><canvas class="w-embers"></canvas><div class="w-center"><div class="w-brand"><img src="img/logo.png" alt=""><div class="w-bar"><i></i></div></div></div></div>
+  <div id="intro" aria-hidden="true">
+    <div class="dark"></div>
+    <canvas id="introEmbers"></canvas>
+    <div class="intro-center">
+      <div class="intro-brand">
+        <img class="intro-logo" src="img/logo.png" alt="Hank's BBQ, Architects of Burgers and Crusts">
+      </div>
+    </div>
+    <div class="intro-hint">Click to skip</div>
+  </div>
+  <div id="page">
+    <header class="topbar" id="topbar">
+      <div class="container">
+        <a class="brand" href="#top" id="brand" aria-label="Home" data-wipe>
+          <img src="img/logo-icon.png" alt="Hank's BBQ">
+        </a>
+        <nav class="nav" aria-label="Main">
+          <a href="#top" data-wipe>Home</a>
+          <a href="#browse" data-wipe><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="2.5" width="15" height="19" rx="3"/><path d="M8.5 8h7M8.5 12h7M8.5 16h3.5"/></svg>Menu</a>
+          <a href="#about" data-wipe>About</a>
+          <a href="#contact" data-wipe><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>Contact</a>
+          <button type="button" class="nav-social" id="socialBtn" aria-haspopup="true" aria-expanded="false" aria-controls="socialMenu"><i class="fa-solid fa-globe" aria-hidden="true"></i>Socials<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+        </nav>
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="search" type="search" placeholder="Search the menu" aria-label="Search the menu">
+        </div>
+        <div class="actions">
+          <a class="btn ghost sm hidden" id="adminLink" href="admin.html" data-wipe>Admin panel</a>
+          <button class="btn ghost sm hidden" id="ordersBtn">My orders</button>
+          <button class="btn ghost sm" id="authBtn"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 21v-1.5a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5V21"/></svg>Sign in</button>
+          <button class="cart-btn" id="cartBtn" type="button" aria-label="Open cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="badge" id="cartCount">0</span></button>
+        </div>
+      </div>
+      <div class="progress-bar" id="progress" aria-hidden="true"></div>
+      <div class="social-menu" id="socialMenu" role="menu" hidden>
+        <a role="menuitem" href="https://www.instagram.com/hanks.bbq/?hl=en" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+        <a role="menuitem" href="https://www.tiktok.com/@hanks_bbq_delbanii" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.31 2.7 5.7 5.76 5.7 3.2 0 5.78-2.6 5.78-5.8V8.74a7.9 7.9 0 0 0 4.6 1.47V7.13a4.6 4.6 0 0 1-3.7-1.31z"/></svg><span>TikTok</span></a>
+      </div>
+    </header>
+
+    <section class="hero" id="top">
+      <canvas id="heroEmbers" aria-hidden="true"></canvas>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow fade-up" style="--n:0"></p>
+          <h1 class="display"><span class="ln" style="--i:0"><span>Welcome To Hank’s BBQ,</span></span><span class="ln" style="--i:1"><span> والله<b class="hl">هلا</b></span></span><span class="ln" style="--i:2"><span></span></span></h1>
+          <!-- <ul class="menu-chips" aria-label="What we cook"><li style="--k:0">Burgers</li><li style="--k:1">Snacks</li><li style="--k:2">Pizzas</li><li style="--k:3">Pastas</li><li style="--k:4">Chicken</li><li style="--k:5">Shawarma</li></ul> -->
+          <div class="cta fade-up" style="--n:3">
+            <a class="btn big" href="#browse" data-wipe>Order now</a>
+            <!-- <a class="btn outline big" href="#about" data-wipe>Our story</a> -->
+            <button class="btn outline big hidden" id="offersBtn" data-go-offers>See today's offers</button>
+          </div>
+        </div>
+        <figure class="hero-frame" id="heroFrame">
+          <div class="emblem"><div class="glow"></div><div class="smoke"><i></i><i></i><i></i><i></i><i></i></div><div class="tilt3d"><img src="img/logo-icon.png" alt="Hank's BBQ" width="900" height="624"></div></div>
+        </figure>
+      </div>
+      <div class="flames" id="flames" aria-hidden="true"></div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-photos" id="aboutPhotos">
+          <figure class="print p1"><span class="tape"></span><img src="img/about-wall.jpg" alt="Vintage tin signs and old framed photos of Lebanon on the restaurant wall" width="1100" height="733" loading="lazy" decoding="async"><figcaption>Our walls</figcaption></figure>
+          <figure class="print p2"><span class="tape"></span><img src="img/about-sign.jpg" alt="The Hank's BBQ sign above the restaurant door" width="682" height="537" loading="lazy" decoding="async"><figcaption>Come say hi</figcaption></figure>
+          <div class="stamp" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><defs><path id="stampPath" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs><text><textPath href="#stampPath" startOffset="0" textLength="288" lengthAdjust="spacing">FAMILY RUN · STREET FOOD · MADE FRESH · </textPath></text></svg>
+            <i class="fa-solid fa-fire-flame-curved"></i>
+          </div>
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">About us</p>
+          <h2 class="about-title">Cooked by a family, shared with everyone</h2>
+          <p class="lede">Hank’s BBQ began with a young Lebanese family and one simple dream: open a small place of their own and cook the food they love. They started from scratch with very little, and shared every step of the journey on TikTok.</p>
+          <p>People connected with the honest story and the bold, flavor packed street food, and a community grew around it. We are still a family run kitchen, and every order is made with that same heart.</p>
+          <ul class="about-tags">
+            <!-- <li><i class="fa-solid fa-people-roof" aria-hidden="true"></i>Family run</li>
+            <li><i class="fa-brands fa-tiktok" aria-hidden="true"></i>Born on TikTok</li>
+            <li><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i>Bold street food</li> -->
+          </ul>
+          <div class="about-cta">
+            <a class="btn big" href=https://www.tiktok.com/@hanks_bbq_delbanii target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok" aria-hidden="true"></i>Follow our story</a>
+            <!-- <a class="btn outline big" href="#browse" data-wipe>See the menu</a> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="browse">
+      <div class="cat-head"><span class="kicker">Hank’s BBQ</span><p>Categories</p></div>
+      <div class="tiles" id="tiles"></div>
+    </section>
+
+    <main class="container" id="menuWrap">
+      <nav class="cats" aria-label="Menu categories"><div class="row" id="cats"></div></nav>
+      <div class="mobile-search"><input id="searchMobile" type="search" placeholder="Search the menu"></div>
+      <div id="menu"></div>
+    </main>
+    <footer class="site" id="contact">
+      <div class="container">
+        <div class="foot-top">
+          <div class="foot-brand">
+            <img src="img/logo-icon.png" alt="Hank's BBQ" width="190" height="132" loading="lazy" decoding="async">
+            <!-- <p>Burgers, pizza and street food, cooked fresh by a family that loves it.</p> -->
+            <div class="foot-social">
+              <a href="https://www.instagram.com/hanks.bbq/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+              <a href="https://www.tiktok.com/@hanks_bbq_delbani" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div class="foot-find">
+            <h4>Contact us</h4>
+            <div class="branches">
+              <div class="branch"><b>Borj El Brajneh</b><span class="addr">Ain Al Sekka</span><span class="tels"><a class="tel" href="tel:+96181600699"><i class="fa-solid fa-phone" aria-hidden="true"></i>+961 81 600 699</a><a class="tel" href="tel:+96170610705"><i class="fa-solid fa-phone" aria-hidden="true"></i>+961 70 610 705</a></span></div>
+              <div class="branch"><b>Jnah</b><span class="addr">Foodie Land</span><span class="tels"><a class="tel" href="tel:+96181863086"><i class="fa-solid fa-phone" aria-hidden="true"></i>+961 81 86 30 86</a></span></div>
+              <div class="branch"><b>Khaldah</b><span class="addr">Highway, next to Fayyad Sport</span><span class="tels"><a class="tel" href="tel:+96176002206"><i class="fa-solid fa-phone" aria-hidden="true"></i>+961 76 00 22 06</a></span></div>
+
+            </div>
+          </div>
+        </div>
+        <div class="copy">
+          <span id="footName"></span>
+          <nav class="legal-links" aria-label="Legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a></nav>
+        </div>
+      </div>
+    </footer>
+    <button type="button" class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="drawer" id="drawer" aria-label="Your cart">
+    <header><h2>Your cart</h2><button class="x" data-close aria-label="Close">&times;</button></header>
+    <div class="list" id="cartList"></div>
+    <footer id="cartFoot">
+      <div class="total-row"><span>Total</span><span id="cartTotal">$0.00</span></div>
+      <button class="btn big" id="checkoutBtn" style="width:100%">Checkout</button>
+      <button class="btn ghost sm" id="clearCartBtn" style="width:100%;margin-top:10px">Empty cart</button>
+    </footer>
+  </aside>
+  <div class="modal sheet" id="productSheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1">
+    <button class="x sheet-x" data-close aria-label="Close">&times;</button>
+    <div class="sheet-media" id="sheetMedia"></div>
+    <div class="sheet-body">
+      <div class="sheet-scroll">
+        <p class="eyebrow" id="sheetCat"></p>
+        <h2 id="sheetTitle"></h2>
+        <p class="sheet-desc" id="sheetDesc"></p>
+        <div class="sheet-price" id="sheetPrice"></div>
+        <div id="sheetGroups"></div>
+      </div>
+      <div class="sheet-foot">
+        <div class="stepper" aria-label="Quantity">
+          <button type="button" id="sheetMinus" aria-label="One less">&minus;</button>
+          <span id="sheetQty">1</span>
+          <button type="button" id="sheetPlus" aria-label="One more">+</button>
+        </div>
+        <button class="btn big" id="sheetAdd" type="button"><span>Add to cart</span><span class="amt" id="sheetAmt"></span></button>
+      </div>
+    </div>
+  </div>
+  <div class="modal auth" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <button class="auth-x" data-close aria-label="Close">&times;</button>
+    <div class="auth-main">
+      <div class="auth-tabs" data-only="login signup" role="tablist">
+        <button type="button" role="tab" id="tabLogin" data-auth="login" class="on">Sign in</button>
+        <button type="button" role="tab" id="tabSignup" data-auth="signup">Sign up</button>
+      </div>
+      <h2 id="authTitle">Welcome back</h2>
+      <p class="auth-sub" id="authSub">Sign in to order and track your food.</p>
+      <form id="authForm" novalidate>
+        <div class="fld" data-only="signup"><label for="fName">Full name</label><input id="fName" type="text" autocomplete="name" placeholder="Your full name"></div>
+        <div class="fld"><label for="fPhone">Phone number</label><input id="fPhone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+961 71 123 456"></div>
+        <div class="fld" data-only="login signup">
+          <label for="fPass"><span>Password</span></label>
+          <div class="pw"><input id="fPass" type="password" autocomplete="current-password" placeholder="Enter your password"><button type="button" data-eye aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+          <div class="auth-help" data-only="signup">At least 8 characters, with letters and numbers.</div>
+        </div>
+        <div class="auth-msg err" id="authErr" role="alert"></div>
+        <div class="auth-msg ok hidden" id="authOk" role="status"></div>
+        <button class="auth-submit" id="authSubmit" type="submit">Sign in</button>
+        <p class="auth-legal" data-only="signup">By creating an account you agree to our <a href="terms.html" target="_blank" rel="noopener">Terms of Service</a> and <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true">
+    <header><h2>Place your order</h2><button class="x" data-close aria-label="Close">&times;</button></header>
+    <div class="content">
+      <ol class="steps" id="coSteps"><li class="on">Delivery</li><li>Notes</li><li>Review</li></ol>
+      <section class="co-step" data-step="1">
+        <div class="tabs" id="coMode"><button type="button" data-mode="delivery" class="active">Delivery</button><button type="button" data-mode="pickup">Pickup</button></div>
+        <div id="addrWrap">
+          <label for="cAddress">Delivery address</label>
+          <textarea id="cAddress" maxlength="300" placeholder="Street, building, floor"></textarea>
+        </div>
+        <p class="hint hidden" id="pickupHint">Pickup is free. We will have it ready for you at the counter.</p>
+      </section>
+      <section class="co-step hidden" data-step="2">
+        <label for="cNotes" style="margin-top:2px">Notes for your order (optional)</label>
+        <div class="chips-note" id="noteChips">
+          <button type="button" data-note="No pickles">No pickles</button>
+          <button type="button" data-note="No onions">No onions</button>
+          <button type="button" data-note="Sauce on the side">Sauce on the side</button>
+          <button type="button" data-note="Extra napkins">Extra napkins</button>
+          <button type="button" data-note="Extra spicy">Extra spicy</button>
+        </div>
+        <textarea id="cNotes" maxlength="300" placeholder="No pickles, extra sauce, allergies, anything the kitchen should know"></textarea>
+        <div class="hint note-count"><span id="noteCount">0</span> / 300</div>
+      </section>
+      <section class="co-step hidden" data-step="3">
+        <div id="checkoutSummary"></div>
+      </section>
+
+      <div class="err" id="checkoutErr"></div>
+      <div class="co-nav">
+        <button type="button" class="btn ghost hidden" id="coBack">Back</button>
+        <button type="button" class="btn big" id="coNext">Continue</button>
+        <button type="button" class="btn big hidden" id="placeOrderBtn">Confirm order</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal wide" id="ordersModal" role="dialog" aria-modal="true">
+    <header><h2>My orders</h2><button class="x" data-close aria-label="Close">&times;</button></header>
+    <div class="content" id="ordersList"></div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/options.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/transition.js"></script>
+</body>
+</html>

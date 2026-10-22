@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin panel</title>
+  <script>try{if(sessionStorage.getItem("wipe-arrive")){sessionStorage.removeItem("wipe-arrive");document.documentElement.classList.add("wipe-arrive")}}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/transition.css">
+</head>
+<body>
+  <div id="wipe" aria-hidden="true"><div class="w-dark"></div><canvas class="w-embers"></canvas><div class="w-center"><div class="w-brand"><img src="img/logo.png" alt=""><div class="w-bar"><i></i></div></div></div></div>
+  <header class="topbar">
+    <div class="container">
+      <a class="brand" href="admin.html"><img src="img/logo.png" alt="Hank's BBQ"><span id="brand">Admin</span></a>
+      <div class="actions" style="margin-left:auto">
+        <a class="btn ghost sm" href="index.html" style="text-decoration:none" data-wipe>View shop</a>
+        <button class="btn ghost sm hidden" id="logoutBtn">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- login gate -->
+  <main class="container" id="gate" style="max-width:420px;margin-top:60px">
+    <div class="panel">
+      <h2>Staff login</h2>
+      <form id="loginForm">
+        <label for="aUser">Phone number</label><input id="aUser" type="tel" autocomplete="tel" inputmode="tel" required>
+        <label for="aPass">Password</label><input id="aPass" type="password" autocomplete="current-password" required>
+        <div class="err" id="loginErr"></div>
+        <button class="btn" style="width:100%;margin-top:6px">Log in</button>
+      </form>
+      <p class="hint">Need an admin account? Run <code>docker compose exec app python -m scripts.create_admin</code></p>
+    </div>
+  </main>
+
+  <!-- dashboard -->
+  <main class="container hidden" id="dash">
+    <div class="admin-nav" id="nav">
+      <button data-tab="orders" class="active">Orders <span id="newCount"></span></button>
+      <button data-tab="menu">Menu items</button>
+      <button data-tab="categories">Categories</button>
+      <button data-tab="users">Users</button>
+    </div>
+    <section id="tab-orders"></section>
+    <section id="tab-menu" class="hidden"></section>
+    <section id="tab-categories" class="hidden"></section>
+    <section id="tab-users" class="hidden"></section>
+  </main>
+
+  <div class="overlay" id="overlay"></div>
+  <!-- product editor -->
+  <div class="modal" id="productModal" role="dialog" aria-modal="true">
+    <header><h2 id="pmTitle">Menu item</h2><button class="x" data-close aria-label="Close">×</button></header>
+    <div class="content">
+      <form id="productForm">
+        <label for="pName">Name</label><input id="pName" type="text" required maxlength="80">
+        <label for="pCat">Category</label><select id="pCat" required></select>
+        <label for="pDesc">Description</label><textarea id="pDesc" maxlength="300"></textarea>
+        <div style="display:flex;gap:10px">
+          <div style="flex:1"><label for="pPrice">Price</label><input id="pPrice" type="number" step="0.01" min="0.01" required></div>
+          <div style="flex:1"><label for="pOld">Old price (offers)</label><input id="pOld" type="number" step="0.01" min="0.01" placeholder="optional"></div>
+        </div>
+        <label for="pFile">Photo</label>
+        <input id="pFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+        <img id="pPreview" class="preview hidden" alt="">
+        <button type="button" class="btn ghost sm hidden" id="pRemoveImg" style="margin-top:6px">Remove photo</button>
+        <label class="switch" style="margin-top:14px"><input id="pAvail" type="checkbox" checked> Available to order</label>
+        <div class="err" id="pErr"></div>
+        <button class="btn" id="pSave" style="width:100%;margin-top:6px">Save</button>
+      </form>
+    </div>
+  </div>
+  <!-- category editor -->
+  <div class="modal" id="categoryModal" role="dialog" aria-modal="true">
+    <header><h2 id="cmTitle">Category</h2><button class="x" data-close aria-label="Close">×</button></header>
+    <div class="content">
+      <form id="categoryForm">
+        <label for="cName">Name</label><input id="cName" type="text" required minlength="2" maxlength="40">
+        <label for="cOrder">Position on the menu (0 is first)</label><input id="cOrder" type="number" value="0">
+        <label for="cFile">Photo (shown on the shop's category tiles)</label>
+        <input id="cFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+        <img id="cPreview" class="preview hidden" alt="">
+        <button type="button" class="btn ghost sm hidden" id="cRemoveImg" style="margin-top:6px">Remove photo</button>
+        <div class="err" id="cErr"></div>
+        <button class="btn" style="width:100%;margin-top:6px">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/transition.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+/* Page transition: the same animation as the opening. A dark screen with embers, the Hank's BBQ logo drops in
+   with its tagline attached as one piece, then the fire circle opens up and shows the page.
+   Used by index.html and admin.html. Colors are fixed here so it looks the same on both pages. */
+#wipe{position:fixed;inset:0;z-index:1000;visibility:hidden;pointer-events:none;color:#f5eee3;--r:0vmax}
+#wipe.on{visibility:visible;pointer-events:auto}
+/* arriving from another page: start covered so the page never flashes, then the script plays the reveal */
+html.wipe-arrive #wipe{visibility:visible;pointer-events:auto;animation:wipeFailsafe 0s 4.5s forwards}
+@keyframes wipeFailsafe{to{visibility:hidden;pointer-events:none}}
+#wipe .w-dark{position:absolute;inset:0;background:#130e0d;
+  -webkit-mask-image:radial-gradient(circle at 50% 62%,transparent calc(var(--r) - 18vmax),#000 var(--r));
+  mask-image:radial-gradient(circle at 50% 62%,transparent calc(var(--r) - 18vmax),#000 var(--r))}
+#wipe .w-embers{position:absolute;inset:0;width:100%;height:100%;transition:opacity .5s ease}
+#wipe .w-center{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;text-align:center;transition:opacity .5s ease,transform .8s cubic-bezier(.22,.8,.3,1)}
+#wipe .w-center.out{opacity:0;transform:scale(1.08)}
+.w-brand{display:flex;flex-direction:column;align-items:center;opacity:0}
+.w-brand.go{animation:wLogoSlam .45s cubic-bezier(.3,1.4,.5,1) forwards}
+html.wipe-arrive .w-brand{opacity:1}
+.w-brand img{display:block;width:min(440px,74vw);height:auto;filter:drop-shadow(0 18px 30px rgba(212,42,32,.35))}
+.w-bar{width:min(300px,66vw);height:5px;border-radius:3px;margin-top:22px;background:rgba(245,238,227,.16);overflow:hidden}
+.w-bar i{display:block;height:100%;background:linear-gradient(90deg,#d42a20,#ee6a2c);transform:scaleX(0);transform-origin:left}
+@keyframes wLogoSlam{from{opacity:0;transform:translateY(-90px) scale(1.25) rotate(-4deg)}60%{opacity:1}to{opacity:1;transform:none}}
+html.wiping{overflow:hidden}
+@media (prefers-reduced-motion:reduce){#wipe{display:none!important}}
